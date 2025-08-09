@@ -1,3 +1,4 @@
+from keep_alive import keep_alive
 import os
 import hashlib
 import time
@@ -600,8 +601,14 @@ class DuplicateCleanerBot:
 
 if __name__ == "__main__":
     try:
+        # Start optional keep-alive server
+        from keep_alive import keep_alive
+        keep_alive()
+
+        # Start the Telegram bot
         bot = DuplicateCleanerBot()
         bot.run()
+
     except KeyboardInterrupt:
         logger.info("Bot stopped by user")
     except Exception as e:
